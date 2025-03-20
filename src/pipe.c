@@ -6,11 +6,11 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:06:20 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:52:06 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:08:40 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../pipex.h"
+#include "../pipex.h"
 
 static void	pipe_error_exit(t_pipex *pipex)
 {

@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:04:09 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:52:13 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:04:49 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	tri_free(char ***tri)
 	int	i;
 
 	if (!tri)
-		return;
+		return ;
 	i = 0;
 	while (tri[i])
 	{

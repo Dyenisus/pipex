@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:13:08 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:53:43 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:10:16 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parent(t_pipex *pipex)
 	if (pid2 == 0)
 		child_two(pipex);
 	close((pipex)->pipe_fd[0]);
-    close((pipex)->pipe_fd[1]);
-    waitpid(pid1, NULL, 0);
-    waitpid(pid2, NULL, 0);
+	close((pipex)->pipe_fd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 }

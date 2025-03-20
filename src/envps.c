@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:44:27 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:52:22 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:09:14 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*path_searcher(char *cmds, char **paths)
 		free(full_path);
 		i++;
 	}
-	return (NULL) ;
+	return (NULL);
 }
 
 static void	extract_helper(char **cmd_paths, char **paths, char ***cmds)
