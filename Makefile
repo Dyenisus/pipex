@@ -5,7 +5,6 @@ NAME := pipex
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 RM := rm -f
-DEBUG_FLAGS := -g -DDEBUG
 
 # Directories
 IN_DIR := .
@@ -56,9 +55,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C libft fclean
-
-debug:
-	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(SRCS) -o $(NAME)
 
 # Recompile everything
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:28:24 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:52:03 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:00:29 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,5 @@ int	main(int argc, char **argv, char **env)
 	}
 	init_pipex(argc, argv, env, &pipex);
 	free_pipex(pipex);
-	#ifdef DEBUG
-    system("leaks pipex");
-    #endif
 	exit(EXIT_SUCCESS);
 }
