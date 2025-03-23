@@ -1,60 +1,71 @@
-# Executable name
-NAME := pipex
+# **************************************************************************** #
+#                                  PIPEX MAKEFILE                              #
+# **************************************************************************** #
 
-# Compiler and flags
-CC := cc
-CFLAGS := -Wall -Wextra -Werror
-RM := rm -f
+# Executable
+NAME		:= pipex
 
-# Directories
-IN_DIR := .
-SRC_DIR := src
-OBJ_DIR := obj
+# Compiler and Flags
+CC			:= cc
+CFLAGS		:= -Wall -Wextra -Werror
 
-# Libft
-LIBFT := libft/libft.a
+# Paths
+SRC_DIR		:= src
+OBJ_DIR		:= obj
+INCL_DIR	:= .
+LIBFT_DIR	:= libft
+LIBFT		:= $(LIBFT_DIR)/libft.a
 
-# Header files
-INCLUDES := -I $(IN_DIR)
+# Headers
+INCLUDES	:= -I$(INCL_DIR) -I$(LIBFT_DIR)
 
-# Source files
-SRCS := $(shell find $(SRC_DIR) -type f -name "*.c")
-OBJS := $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+# Source and Object Files
+SRCS := $(addprefix $(SRC_DIR)/, cmds.c envps.c file.c free.c init.c pipe.c pipex.c process.c split_args.c)
+OBJS		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-# Color for output
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
-RESET := \033[0m
+# Colors
+GREEN		:= \033[0;32m
+YELLOW		:= \033[0;33m
+RESET		:= \033[0m
 
-# Linking so_long with libft
+# Default Target
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+# Executable Rule
+$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(INCLUDES)
 	@echo "$(GREEN)$(NAME) compiled successfully!$(RESET)"
 
-# Compiling .c files to .o
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+# Object Compilation
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Create obj directory if not exists
+# Create obj folder if needed
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-# Compile libft (which includes get_next_line + ft_printf)
-$(LIBFT): 
-	@$(MAKE) -C libft --no-print-directory
+# Build Libft
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
-# Clean object files
+# Clean Pipex Object Files
 clean:
 	@rm -f $(OBJS)
-	@make -C libft clean
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "$(YELLOW)Object files cleaned.$(RESET)"
 
-# Full clean (removes everything)
+# Clean Everything
 fclean: clean
 	@rm -f $(NAME)
-	@make -C libft fclean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "$(YELLOW)All cleaned.$(RESET)"
 
-# Recompile everything
+# Recompile Everything
 re: fclean all
+
+# Norminette Check (optional)
+norm:
+	norminette $(SRC_DIR) $(INCL_DIR) $(LIBFT_DIR)
+
+.PHONY: all clean fclean re norm

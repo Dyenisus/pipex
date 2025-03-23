@@ -6,7 +6,7 @@
 /*   By: yesoytur <yesoytur@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 10:41:38 by yesoytur          #+#    #+#             */
-/*   Updated: 2025/03/20 20:52:10 by yesoytur         ###   ########.fr       */
+/*   Updated: 2025/03/23 10:38:48 by yesoytur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ static void	pipex_error_exit(void)
 
 void	init_pipex(int argc, char **argv, char **env, t_pipex **pipex)
 {
-	(*pipex) = (t_pipex *)malloc(sizeof(t_pipex));
+	(*pipex) = (t_pipex *)ft_calloc(1, sizeof(t_pipex));
 	if (!(*pipex))
 		pipex_error_exit();
+	if (!argv[2][0] || !argv[3][0])
+	{
+		free_pipex((*pipex));
+		ft_printf("Usage: ./pipex infile cmd1 cmd2 outfile\n");
+		exit(EXIT_FAILURE);
+	}
 	(*pipex)->cmd_count = 2;
 	(*pipex)->cmds = extract_cmds(argc, argv, *pipex);
 	(*pipex)->original_envp = env;
